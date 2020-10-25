@@ -1,0 +1,32 @@
+<center><table class="outer"><tr><th><{$lang_pagesTop10}></th></tr></table></center>
+<br><br>
+<!-- Start ranking loop -->
+<{foreach item=ranking from=$rankings}>
+<table class="outer">
+  <tr>
+    <th colspan="6" align="center"><{$ranking.directoryName}> (<{$lang_sortby}>)</th>
+  </tr>
+  <tr>
+    <td class="head" style="width: 7%;"><{$lang_rank}></td>
+    <td class="head" style="width: 28%;"><{$lang_title}></td>
+    <td class="head" style="width: 40%;"><{$lang_category}></td>
+    <td class="head" style="width: 8%; text-align : center;"><{$lang_hits}></td>
+    <td class="head" style="width: 9%; text-align : center;"><{$lang_rating}></td>
+    <td class="head" style="width: 8%; text-align : right;"><{$lang_vote}></td>
+  </tr>
+  <!-- Start pages loop -->
+  <{foreach item=page from=$ranking.page}>
+  <tr>
+    <td class="even"><{$page.rank}></td>
+    <td class="odd"><a href='index.php?page=<{$page.id}>'><{$page.name}></a></td>
+    <td class="even"><{$page.category}></td>
+    <td class="odd" align='center'><{$page.hits}></td>
+    <td class="even" align='center'><{$page.rating}></td>
+    <td class="odd" style="text-align: right;"><{$page.votes}></td>
+  </tr>
+  <{/foreach}>
+  <!-- End links loop-->
+</table>
+<br>
+<{/foreach}>
+<!-- End ranking loop -->

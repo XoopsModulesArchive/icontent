@@ -1,0 +1,35 @@
+<center>
+<{if $currentDirectory.id != 0}>
+<table class="outer" style="width: 98%; text-align: left;">
+<tr><th><{$lang_chosenDirectories}></th></tr>
+<{section name=i loop=$directory}>
+<tr><td class="head"><{$directory[i].indentation}><img src="images/directory.gif">&nbsp;<a href="<{$directory[i].link}>"><{$directory[i].name}></a></td></tr>
+<{/section}>
+</table>
+<br><br>
+<{/if}>
+<table class="outer" style="width: 98%; text-align: left;">
+<tr><th colspan="2"><{$lang_directory}>&nbsp;:&nbsp;<{$currentDirectory.name}></th></tr>
+<{if $currentDirectory.id != 0}>
+<tr><td class="head" colspan="2"><img src="images/back.gif">&nbsp;<a href="<{$parentDirectory.link}>"><{$parentDirectory.name}></a></td></tr>
+<{/if}>
+<{section name=i loop=$childDirectory}>
+<tr>
+<td class="even" style="width: 50%;"><img src="images/directory.gif">&nbsp;<a href="<{$childDirectory[i].link}>"><{$childDirectory[i].name}></a></td>
+<td class="even" style="width: 50%;"><b><{$childDirectory[i].hits}>&nbsp;<{$lang_hits}></b></td>
+</tr>
+<{/section}>
+<{section name=i loop=$childPage}>
+<tr>
+<td class="odd" style="width: 50%;"><img src="images/file.gif">&nbsp;<a href="<{$childPage[i].link}>"><{$childPage[i].name}></a></td>
+<td class="even" style="width: 50%;">
+<ul>
+<li><b><{$lang_pageSubmittedBy}>&nbsp;:</b>&nbsp;<i><{$childPage[i].submitter}></i></li><li><b><{$lang_lastUpdate}>&nbsp;:&nbsp;<i><{$childPage[i].lastUpdate}></i></b></li><li><{$childPage[i].hits}>&nbsp;<{$lang_hits}>&nbsp;
+<{if $childPage[i].commentsEnabled == 1}><b>|</b>&nbsp;<{$childPage[i].comments}>&nbsp;<{$lang_comments}>&nbsp;<{/if}><{if $childPage[i].ratingEnabled == 1}><b>|</b>&nbsp;<{$lang_rating}>&nbsp;:&nbsp;<{$childPage[i].rating}>&nbsp;(<{$childPage[i].votes}>&nbsp;<{$lang_votes}>)<{/if}></li>
+</ul>
+</td>
+</tr>
+<{/section}>
+</table>
+<br><br>
+</center>

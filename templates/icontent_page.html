@@ -1,0 +1,62 @@
+<div style="width: 98%;">
+
+<!-- Start shortcutsOnPage -->
+<{if $shortcutsOnPages == 1}>
+<{include file="db:icontent_shortcuts.html"}>
+<{/if}>
+<!-- End shortcutsOnPage -->
+
+<!-- Start top links -->
+<{if $navBar == 1}>
+<center>
+[<a href="<{$backUrl}>"><{$lang_back}></a>&nbsp;|&nbsp;<a href="<{$printUrl}>" target="_blank"><{$lang_print}></a>]
+<{if $modifyPageLink != ''}>
+&nbsp;&nbsp;[<a href="<{$modifyPageLink}>"><{$lang_modifyPage}></a>]
+<{/if}>
+<br><br>
+<{$lang_pageSubmittedBy}>&nbsp;<{$submitter}><{if $ratingEnabled == 1}>&nbsp;-&nbsp;[<{$lang_rating}> : <{$rating}> (<{$votes}> <{$lang_votes}>)&nbsp;|&nbsp;<a href="<{$rateUrl}>"><{$lang_rate}></a>]<{/if}>
+</center>
+<br><br>
+<{/if}>
+<!-- End top links -->
+
+<!-- Start page content -->
+<{$pageContent}>
+<!-- End page content -->
+
+<!-- Start bottom links -->
+<{if $navBar == 1}>
+<br><br>
+<center>
+[<a href="<{$backUrl}>"><{$lang_back}></a>&nbsp;|&nbsp;<a href="<{$printUrl}>" target="_blank"><{$lang_print}></a>]
+<{if $modifyPageLink != ''}>
+&nbsp;&nbsp;[<a href="<{$modifyPageLink}>"><{$lang_modifyPage}></a>]
+<{/if}>
+<br><br> 
+<{$lang_pageSubmittedBy}>&nbsp;<{$submitter}><{if $ratingEnabled == 1}>&nbsp;-&nbsp;[<{$lang_rating}> : <{$rating}> (<{$votes}> <{$lang_votes}>)&nbsp;|&nbsp;<a href="<{$rateUrl}>"><{$lang_rate}></a>]<{/if}>
+</center>
+<{/if}>
+<!-- End bottom links -->
+
+<!-- Start comments part -->
+<{if $commentsEnabled == 1}>
+<div style="text-align: center; padding: 3px; margin:3px;">
+<{$commentsnav}>
+<{$lang_notice}>
+</div>
+
+<div style="margin:3px; padding: 3px;">
+<!-- start comments loop -->
+<{if $comment_mode == "flat"}>
+<{include file="db:system_comments_flat.html"}>
+<{elseif $comment_mode == "thread"}>
+<{include file="db:system_comments_thread.html"}>
+<{elseif $comment_mode == "nest"}>
+<{include file="db:system_comments_nest.html"}>
+<{/if}>
+<!-- end comments loop -->
+</div>
+<{/if}>
+<!-- End comments part -->
+
+</div>

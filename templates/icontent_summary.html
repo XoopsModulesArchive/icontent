@@ -1,0 +1,18 @@
+<center>
+<table class="outer" style="width: 98%; text-align: left;">
+<tr><th colspan="2"><{$lang_summary}></th></tr>
+<{section name=i loop=$directories}>
+<tr>
+<td class="even" style="width: 50%;"><{$directories[i].indentation}><img src="images/directory.gif">&nbsp;<a href="<{$directories[i].link}>"><{$directories[i].name}></a></td>
+<td class="odd" style="width: 50%;"><b><{$directories[i].hits}>&nbsp;<{$lang_hits}></b></td>
+</tr>
+<{/section}>
+<{section name=i loop=$pages}>
+<tr>
+<td class="even" style="width: 50%;"><img src="images/file.gif">&nbsp;<a href="<{$pages[i].link}>"><{$pages[i].name}></a></td>
+<td class="odd" style="width: 50%;"><ul><li><b><{$lang_pageSubmittedBy}>&nbsp;:</b>&nbsp;<i><{$pages[i].submitter}></i></li><li><b><{$lang_lastUpdate}>&nbsp;:&nbsp;<i><{$pages[i].lastUpdate}></i></b></li><li><{$pages[i].hits}>&nbsp;<{$lang_hits}>&nbsp;<{if $pages[i].commentsEnabled == 1}><b>|</b>&nbsp;<{$pages[i].comments}>&nbsp;<{$lang_comments}>&nbsp;<{/if}><{if $pages[i].ratingEnabled == 1}><b>|</b>&nbsp;<{$lang_rating}>&nbsp;:&nbsp;<{$pages[i].rating}>&nbsp;(<{$pages[i].votes}>&nbsp;<{$lang_votes}>)<{/if}></li></ul></td>
+</tr>
+<{/section}>
+</table>
+<br><br>
+</center>

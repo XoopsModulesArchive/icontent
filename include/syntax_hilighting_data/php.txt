@@ -1,0 +1,11 @@
+/\*.*?\*/=color: #FF0000; font-style: italic;
+//.*?\n=color: #FF8800; font-style: italic;
+(?<!\\)\'.*?(?<!\\)\'=color: #008800;
+include_once=font-weight: bold;
+default=font-weight: bold;
+switch=font-weight: bold;
+break=font-weight: bold;
+case=font-weight: bold;
+else=font-weight: bold;
+new=font-weight: bold;
+if=font-weight: bold;

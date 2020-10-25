@@ -1,0 +1,14 @@
+<{if $nbShortcuts != 0}>
+<center>
+<table class="outer" style="width: 98%; text-align: left;">
+<tr><th colspan="2"><{$lang_shortcuts}></th></tr>
+<{section name=i loop=$shortcut}>
+<tr>
+<td class="even" style="width: 50%;"><img src="images/item.gif">&nbsp;<a href="<{$shortcut[i].link}>"><{$shortcut[i].name}></a></td>
+<td class="odd" style="width: 50%;"><b><{$shortcut[i].hits}>&nbsp;<{$lang_hits}></b></td>
+</tr>
+<{/section}>
+</table>
+</center>
+<br><br>
+<{/if}>

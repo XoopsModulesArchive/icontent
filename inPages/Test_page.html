@@ -1,0 +1,141 @@
+<p>
+<center><h3>Test page</h3></center>
+<a href="#">essai 3</a><br>
+<a href="Test_page_bis.html#22">Vers Test_page_bis.html avec un #22</a><br>
+Flash : <br>param name="movie" value="banner.swf"<br>
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,40,0" width="468" height="60">
+<param name="movie" value="banner.swf">
+<param name=quality value=high>
+<embed src="banner.swf" quality=high pluginspage="http://www.macromedia.com/shockwave/download/index.cgi?P1_Prod_Version=ShockwaveFlash"; type="application/x-shockwave-flash" width="468" height="60"></embed>
+</object>
+<br>
+Image : <img src="iclogo.png">
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,29,0" width="468" height="60">
+<param name="movie" value="banner.swf">
+<param name="quality" value="high">
+<embed src="banner.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="468" height="60"></embed>
+</object>
+</p>
+<p>&nbsp;</p>
+<p>
+<h3>Hilighting colorisation module - icontent</h3>
+[code type="php"]
+// Inclusion of the xoops's parameters
+require_once dirname(__DIR__, 2) . '/mainfile.php';
+
+// iContent conficuration
+$parentModule = 'icontent';
+
+// Page management
+// A comple'tly different page default is bui'lded according to the operation
+// It allows to include only the needed libraries and functions to execute the operation
+if(isset($_GET['op']))
+{
+    switch($_GET['op'])
+    {
+        default :
+            // Error re'direction
+            redirect_header('index.php',2,_IC_ERROR_NOVALIDOPERATION);
+        break;
+
+        case 'explore' :
+            // Xoops configuration
+            $GLOBALS['xoopsOption']['template_main'] = 'icontent_explorer.html';
+
+            // iContent configuration
+            /*require_once __DIR__ . '/class/explorer.class.php';
+            $explorer = new explorer($parentModule);*/
+
+            // Construction of the complete page
+            require_once XOOPS_ROOT_PATH.'/header.php';
+            $explorer->display();
+            require_once XOOPS_ROOT_PATH.'/footer.php';
+       break;
+
+       case 'message' :
+            // Xoops configuration
+            $GLOBALS['xoopsOption']['template_main'] = 'icontent_message.html';
+
+            // iContent configuration
+            require_once __DIR__ . '/class/page.class.php';
+            $page = new page($parentModule);
+
+            // Construction of the complete page
+            require_once XOOPS_ROOT_PATH.'/header.php';
+            $page->message();
+            require_once XOOPS_ROOT_PATH.'/footer.php';
+        break;
+
+        case 'print' :
+            // iContent configuration
+            require_once __DIR__ . '/class/page.class.php';
+            $page = new page($parentModule);
+
+            // Construction of the complete page
+            $page->printableFormat();
+        break;
+
+        case 'rate' :
+            // Xoops configuration
+            $GLOBALS['xoopsOption']['template_main'] = 'icontent_rate.html';
+            require_once __DIR__ . '/include/functions.php';
+
+            require_once XOOPS_ROOT_PATH.'/header.php';
+            require_once __DIR__ . '/include/rate.php';
+            require_once XOOPS_ROOT_PATH.'/footer.php';
+        break;
+
+        case 'top10' :
+            // Xoops configuration
+            $GLOBALS['xoopsOption']['template_main'] = 'icontent_top10.html';
+
+            // iContent configuration
+            require_once __DIR__ . '/class/page.class.php';
+            $page = new page($parentModule);
+
+            require_once XOOPS_ROOT_PATH.'/header.php';
+            $page->top10();
+            require_once XOOPS_ROOT_PATH.'/footer.php';
+        break;
+    }
+}
+else
+{
+    // Allows to dipplay a page with a short url with only the page id like this : index.php?page=1
+    // Especially usefull for the comments
+    if(isset($_GET['page']))
+    {
+        // Xoops configuration
+        $GLOBALS['xoopsOption']['template_main'] = 'icontent_page.html';
+
+        // iContent configuration
+        require_once __DIR__ . '/class/page.class.php';
+        $page = new page($parentModule);
+
+        // Construction of the complete page
+        require_once XOOPS_ROOT_PATH.'/header.php';
+        $page->display();
+        require_once XOOPS_ROOT_PATH.'/include/comment_view.php';
+        require_once XOOPS_ROOT_PATH.'/footer.php';
+    }
+    else
+    {
+        // Builds the defaut page when there is no incontent used vars in the url
+        // Xoops configuration
+        $GLOBALS['xoopsOption']['template_main'] = 'icontent_index.html';
+
+        // iContent configuration
+        require_once __DIR__ . '/class/summary.class.php';
+        require_once __DIR__ . '/class/shortcut.class.php';
+        $summary = new summary($parentModule);
+        $shortcut = new shortcut($parentModule);
+
+        // Construction of the complete page
+        require_once XOOPS_ROOT_PATH.'/header.php';
+        $summary->display();
+        $shortcut->display();
+        require_once XOOPS_ROOT_PATH.'/footer.php';
+    }
+}
+[/code]
+</p>

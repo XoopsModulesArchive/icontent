@@ -1,0 +1,11 @@
+<div style="width: 95%; padding : 4px;">
+<{if $block.content == 1}>
+<ul>
+<{foreach item=new from=$block.new}>
+<li><a href="<{$new.link}>"><{$new.name}></a>&nbsp;(<{$new.lastUpdate}>)</li>
+<{/foreach}>
+</ul>
+<{else}>
+<{$block.lang_noNew}>
+<{/if}>
+</div>

@@ -1,0 +1,11 @@
+<div style="width: 95%; padding : 4px;">
+<{if $block.content == 1}>
+<ul>
+<{foreach item=directory from=$block.directory}>
+<li><a href="<{$directory.link}>"><{$directory.name}></a></li>
+<{/foreach}>
+</ul>
+<{else}>
+<{$block.lang_noDirectory}>
+<{/if}>
+</div>
